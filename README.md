@@ -4,7 +4,9 @@ Stores Hubot's brain in SQL Server.
 
 ## Setup
 
-Run the following SQL to setup the table for storage:
+You will need to set a new environment variable, HUBOT_MSSQL_CONNECTION, to a connection string of the the following form: server|db_name|username|password
+
+Then run the following SQL to setup the table for storage:
 
 ```sql
 create table hubot_brain (
