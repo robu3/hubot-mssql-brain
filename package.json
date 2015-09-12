@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/robu3/hubot-mssql-brain/issues"
   },
-  "homepage": "https://github.com/robu3/hubot-mssql-brain#readme"
+  "homepage": "https://github.com/robu3/hubot-mssql-brain#readme",
+  "dependencies": {
+    "tedious": "^1.12.3"
+  }
 }
