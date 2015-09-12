@@ -1,0 +1,25 @@
+{
+  "name": "hubot-mssql-brain",
+  "version": "1.0.0",
+  "description": "A SQL Server-backed Hubot brain",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robu3/hubot-mssql-brain.git"
+  },
+  "keywords": [
+    "hubot-script",
+    "mssql",
+    "sql",
+    "server"
+  ],
+  "author": "robu3",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robu3/hubot-mssql-brain/issues"
+  },
+  "homepage": "https://github.com/robu3/hubot-mssql-brain#readme"
+}
