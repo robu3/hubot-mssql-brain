@@ -49,6 +49,7 @@ module.exports = (robot) ->
     password: connParts[3]
     options:
       database: connParts[1]
+      useColumnNames: true
 
   connection = new Connection(connConfig)
   connection.on "connect", (err) ->
@@ -56,7 +57,7 @@ module.exports = (robot) ->
     if err
       throw new Error(err)
     else
-      robot.logger.debug "mssql-brain connected to #{connConfig.server}."
+      robot.logger.debug "mssql-brain connected to #{connConfig.server}/#{connConfig.options.database}"
       request = new Request("SELECT TOP 1 storage FROM hubot_brain", (err, rowcount) ->
         if err
           robot.logger.error "error fetching brain data: " + err
@@ -64,8 +65,8 @@ module.exports = (robot) ->
 
       request.on "row", (columns) ->
         if columns["storage"]?
+          robot.logger.debug "mssql-brain loaded"
           robot.brain.mergeData JSON.parse(columns["storage"].value)
-          robot.logger.debug "mssql-brain loaded."
 
       connection.execSql(request)
 
@@ -80,7 +81,7 @@ module.exports = (robot) ->
     request.addParameter("data", Tedious.TYPES.NVarChar, JSON.stringify(data))
     connection.execSql(request)
 
-    robot.logger.debug "mssql-brain saved."
+    robot.logger.debug "mssql-brain saved"
 
   robot.brain.on 'close', ->
     connection.close()
