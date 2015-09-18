@@ -19,7 +19,7 @@
 #   )
 #
 #   insert into hubot_brain
-#   values(1, null)
+#   values(null)
 #
 #   Thanks to danthompson and the pg-brain script for inspiration: https://github.com/github/hubot-scripts/blob/master/src/scripts/pg-brain.coffee
 #
@@ -40,16 +40,20 @@ module.exports = (robot) ->
 
   connParts = mssqlConnection.split("|")
 
-  if connParts.length != 4
+  if connParts.length < 4
     throw new Error("HUBOT_MSSQL_CONNECTION must be in the following format: server|db_name|username|password")
 
-  connConfig = 
+  connConfig =
     server: connParts[0]
     userName: connParts[2]
     password: connParts[3]
     options:
       database: connParts[1]
       useColumnNames: true
+
+  # use instance name if provided
+  if connParts.length = 5
+    connConfig.options.instanceName = connParts[4]
 
   connection = new Connection(connConfig)
   connection.on "connect", (err) ->
