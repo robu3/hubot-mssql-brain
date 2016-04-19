@@ -52,8 +52,12 @@ module.exports = (robot) ->
       useColumnNames: true
 
   # use instance name if provided
-  if connParts.length = 5
+  if connParts.length >= 5
     connConfig.options.instanceName = connParts[4]
+
+  # use domain if provided
+  if connParts.length >= 6
+    connConfig.domain = connParts[5]
 
   connection = new Connection(connConfig)
   connection.on "connect", (err) ->
